@@ -18,13 +18,10 @@ public class Login_Test extends BaseClass {
             String expectedLabel = "Products";
             //Validating using valid user logins
             lp.setLogin("standard_user","secret_sauce");
-            if(expectedLabel.equals(hp.setLabel())){
-                Assert.assertTrue(true);
-            }else {
-                Assert.fail();
-            }
-        }catch (Exception e){
+            Assert.assertEquals(hp.setLabel(), expectedLabel, "Login failed: Label mismatch.");
 
+        }catch (Exception e){
+           // Assert.fail("Exception during valid login test: " + e.getMessage());
         }
     }
 
@@ -33,14 +30,11 @@ public class Login_Test extends BaseClass {
         // Validating using locked out user and wrong password
         try {
             lp.setLogin("locked_out_user","secret_sauce");
-            String message = "Epic sadface: Sorry, this user has been locked out.";
-            if (message.equals(lp.getMessage())) {
-                Assert.assertTrue(true);
-            } else {
-                Assert.fail();
-            }
-        }catch (Exception e){
+            String expectedMessage = "Epic sadface: Sorry, this user has been locked out.";
+            Assert.assertEquals(lp.getMessage(), expectedMessage, "Locked out message mismatch.");
 
+        }catch (Exception e){
+           // Assert.fail("Exception during locked out user test: " + e.getMessage());
         }
     }
 

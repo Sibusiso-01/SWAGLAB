@@ -1,0 +1,28 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+  - task: Maven@4
+    inputs:
+      mavenPomFile: 'pom.xml'
+      mavenOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '22'
+      jdkArchitectureOption: 'x64'
+      mavenVersionOption: '3.9.9'
+      goals: 'clean test'
+      continueOnError: true  # Allows pipeline to proceed even if Maven fails
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/Reports'
+      artifactName: 'ExtentReports'
+      publishLocation: 'Container'
+
+  - script: |
+      echo "Cleaning up build files..."
+      rm -rf $(System.DefaultWorkingDirectory)/target
+    displayName: 'Clean up'

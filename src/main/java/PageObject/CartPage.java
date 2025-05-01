@@ -13,7 +13,6 @@ public class CartPage extends BasePage{
     }
     @FindBy(xpath="//span[@class='fa-layers-counter shopping_cart_badge']")
     WebElement cartbadge;
-
     @FindBy(xpath="//div[normalize-space()='Sauce Labs Backpack']") WebElement sauce_backpack;
     @FindBy(xpath="//div[normalize-space()='Sauce Labs Bolt T-Shirt']") WebElement sauce_T_shirt;
 
@@ -34,7 +33,6 @@ public class CartPage extends BasePage{
         String item = sauce_T_shirt.getText();
         return  item;
     }
-
     //Get the item list
 
     // Items count

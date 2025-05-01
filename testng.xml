@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="false">
+    <test name="SWAGLABS">
+        <classes>
+            <class name="TestCases.Add_ToCart_Test">
+            <methods><include name="addToCart"/>
+            </methods></class><class name="TestCases.Checkout_Test">
+            <methods><include name="checkoutTest"/>
+            </methods>
+        </class>
+            <class name="TestCases.DP_Login_Test">
+                <methods>
+                    <include name="loginTest"/>
+                </methods>
+            </class>
+            <class name="TestCases.Login_Test">
+                <methods>
+                    <include name="Valid_Login_Test"/>
+                    <include name="Locked_out_User_test"/></methods></class><class name="TestCases.Remove_From_Cart_Test"><methods><include name="remove_from_cart"/></methods></class></classes></test></suite>

@@ -14,9 +14,7 @@ public class Add_ToCart_Test extends BaseClass {
     @Test
     void addToCart() {
         try {
-            String label = "Products";
-            String bag = "Sauce Labs Backpack";
-            String T_shirt = "Sauce Labs Bolt T-Shirt";
+
             //calling user logins method
             lp.setLogin("standard_user","secret_sauce");
 
@@ -24,28 +22,23 @@ public class Add_ToCart_Test extends BaseClass {
             hp.setAddToCart();
 
             // verifying the total number of items added.
-            int totalcount =2;
-            if(totalcount == cp.getCartCount()) {
-                Assert.assertTrue(true);
-            }else {
-                Assert.fail();
-            }
+            int expectedCount = 2;
+            int actualCount = cp.getCartCount();
+            Assert.assertEquals(actualCount, expectedCount, "Cart item count mismatch.");
 
-            // validating added items
+            // Navigate to cart page
             hp.setCart();
-            Thread.sleep(3000);
-            if(bag.equals(cp.setSauce_Backpack_ItemNames()) & T_shirt.equals(cp.setSauce_T_Shirt()))
-            {   Assert.assertTrue(true);
-            }else {
-                Assert.fail();
-            }
+
+            // Verify item names
+            String expectedBag = "Sauce Labs Backpack";
+            String expectedShirt = "Sauce Labs Bolt T-Shirt";
+            Assert.assertEquals(cp.setSauce_Backpack_ItemNames(), expectedBag, "Backpack name mismatch.");
+            Assert.assertEquals(cp.setSauce_T_Shirt(), expectedShirt, "T-Shirt name mismatch.");
+
             // validate quantity of items added
 
-            if(cp.getBagQTY() ==1 && cp.getShirtQTY()==1){
-                Assert.assertTrue(true);
-            }else{
-                Assert.fail();
-            }
+            Assert.assertEquals(cp.getBagQTY(), 1, "Bag quantity should be 1.");
+            Assert.assertEquals(cp.getShirtQTY(), 1, "T-Shirt quantity should be 1.");
 
         } catch (Exception e) {
 
