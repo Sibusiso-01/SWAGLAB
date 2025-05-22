@@ -10,7 +10,7 @@ steps:
       mavenPomFile: 'pom.xml'
       mavenOptions: '-Xmx3072m'
       javaHomeOption: 'JDKVersion'
-      jdkVersionOption: '22'
+      jdkVersionOption: '17'
       jdkArchitectureOption: 'x64'
       mavenVersionOption: '3.9.9'
       goals: 'clean test'
